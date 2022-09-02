@@ -1,6 +1,7 @@
 import express from 'express';
 import iscnFeed from './feed.js';
 import api from './api.js';
+import { getName } from './utils.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -14,7 +15,7 @@ app.get('/feed', async (req, res) => {
         ...req.query,
       },
     });
-    const feed = await iscnFeed(response.data.records);
+    const feed = await iscnFeed(response.data.records, getName(req.query));
     res.header('Content-Type', 'application/xml');
     res.status(200).send(feed);
   } catch (err) {

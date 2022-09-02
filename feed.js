@@ -1,12 +1,12 @@
 import { Feed } from 'feed';
 
-export default async function iscnFeed(records) {
+export default async function iscnFeed(records, title) {
   const feed = new Feed({
-    title: 'ISCN Feed',
-    id: 'http://likecoin.github.io/iscn-browser',
-    link: 'http://likecoin.github.io/iscn-browser',
-    updated: new Date(),
-    generator: 'ISCN Feed',
+    title,
+    id: 'https://iscn-feeder.wancat.cc',
+    link: 'https://iscn-feeder.wancat.cc',
+    updated: new Date(records[0].data.recordTimestamp),
+    generator: 'ISCN Feeder',
   });
   records.forEach(({ data }) => {
     const {
@@ -16,6 +16,7 @@ export default async function iscnFeed(records) {
         url,
         description,
       },
+      stakeholders,
       recordTimestamp,
     } = data;
     feed.addItem({
@@ -25,7 +26,11 @@ export default async function iscnFeed(records) {
       description,
       content: description,
       date: new Date(recordTimestamp),
+      contributor: stakeholders.map(({ entity }) => ({
+        name: entity.name,
+        link: `https://likecoin.github.io/iscn-browser/stakeholder/${entity.name}`,
+      })),
     });
   });
-  return feed.rss2();
+  return feed.atom1();
 }
