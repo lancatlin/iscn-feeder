@@ -1,0 +1,15 @@
+[Unit]
+Description=ISCN Feeder
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+Environment="PORT=9000"
+WorkingDirectory=/var/www/feeder
+ExecStart=/usr/bin/yarn start
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
