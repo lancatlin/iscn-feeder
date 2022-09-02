@@ -1,12 +1,14 @@
 import express from 'express';
-import feed from './feed.js';
+import iscnFeed from './feed.js';
 
 const app = express();
 const port = 3000;
 
 app.get('/', async (req, res) => {
-  await feed('/iscn/records');
-  res.send('Hello World');
+  const feed = await iscnFeed('/iscn/records');
+  console.log(feed);
+  res.header('Content-Type', 'application/xml');
+  res.status(200).send(feed);
 });
 
 app.listen(port, () => {
