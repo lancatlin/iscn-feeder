@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ISCN Feeder</title>
+  </head>
+  <body>
+    <main>
+      <h1>ISCN Feeder</h1>
+      <form name='iscnForm' action="./feed" method="GET" onsubmit="return validateForm()">
+        <label>Owner: <input name="owner" type="text"></label>
+        <input type="submit" value="Submit">
+      </form>
+      <br>
+      <form name='iscnForm' action="./feed" method="GET" onsubmit="return validateForm()">
+        <label>Keyword: <input name="keyword" type="text" multiple></label>
+        <input type="submit" value="Submit">
+      </form>
+      <br>
+      <form name='iscnForm' action="./feed" method="GET" onsubmit="return validateForm()">
+        <label>Stakeholder: <input name="stakeholder.name" type="text"></label>
+        <input type="submit" value="Submit">
+      </form>
+    </main>
+    <footer>
+      <p>Developed by <a href="https://wancat.cc">Wancat</a></p>
+    </footer>
+  </body>
+</html>

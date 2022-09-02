@@ -5,11 +5,12 @@ import api from './api.js';
 const app = express();
 const port = 3000;
 
-app.get('/', async (req, res) => {
+app.get('/feed', async (req, res) => {
   try {
     const response = await api.get('/iscn/records', {
       params: {
         reverse: true,
+        limit: 50,
         ...req.query,
       },
     });
@@ -21,6 +22,8 @@ app.get('/', async (req, res) => {
     res.status(500).send('ERROR');
   }
 });
+
+app.use('/', express.static('./static'));
 
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);
