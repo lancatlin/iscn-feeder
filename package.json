@@ -1,5 +1,5 @@
 {
-  "name": "iscn-rss-feed",
+  "name": "iscn-feeder",
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
